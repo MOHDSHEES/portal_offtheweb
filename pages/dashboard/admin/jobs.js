@@ -26,7 +26,7 @@ const Jobs = () => {
   const { user } = useContext(MyContext);
   const [show, setShow] = useState(false);
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMoreData, setIsMoreData] = useState(true);
   const itemsPerPage = 10;
