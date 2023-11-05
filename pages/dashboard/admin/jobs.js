@@ -32,6 +32,7 @@ const Jobs = () => {
   const itemsPerPage = 10;
   const [loadingMore, setLoadingMore] = useState(false);
   const [filter, setFilter] = useState("all");
+  const [jobsLoadFlag, setJobsLoadFlag] = useState(true);
 
   function jobDescription(data) {
     // router.query.job = data._id;
@@ -45,6 +46,7 @@ const Jobs = () => {
       setLoading(true);
     }
     setLoadingMore(true);
+    setJobsLoadFlag(true);
 
     const { data } = await axios.post(
       `/api/jobs/allJobs?page=${
@@ -60,11 +62,13 @@ const Jobs = () => {
       } else {
         setJobs([...jobs, ...data.jobs]);
         setCurrentPage(currentPage + 1);
+        setJobsLoadFlag(false);
       }
       setLoadingMore(false);
     } else {
       setLoadingMore(false);
       setIsMoreData(false);
+      setJobsLoadFlag(false);
     }
     setLoading(false);
   }
@@ -86,6 +90,7 @@ const Jobs = () => {
   function filterFunction(filter) {
     handleClose();
     // setCurrentPage(1);
+    setJobsLoadFlag(true);
     setFilter(filter);
     setIsMoreData(true);
     setJobs([]);
@@ -160,19 +165,19 @@ const Jobs = () => {
                 </Stack>
               ) : (
                 <div>
-                  {jobs && jobs.length !== 0 ? (
-                    jobs.map((job, idx) => {
-                      return (
-                        <div key={idx} onClick={() => jobDescription(job)}>
-                          <NewJobs data={job} />
+                  {jobs && jobs.length !== 0
+                    ? jobs.map((job, idx) => {
+                        return (
+                          <div key={idx} onClick={() => jobDescription(job)}>
+                            <NewJobs data={job} />
+                          </div>
+                        );
+                      })
+                    : !jobsLoadFlag && (
+                        <div class="alert alert-primary" role="alert">
+                          No Jobs found.
                         </div>
-                      );
-                    })
-                  ) : (
-                    <div class="alert alert-primary" role="alert">
-                      No Jobs found.
-                    </div>
-                  )}
+                      )}
                   {loadingMore ? (
                     <div style={{ marginTop: "10px" }}>
                       <ThreeDots
