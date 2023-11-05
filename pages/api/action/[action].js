@@ -8,13 +8,13 @@ export default async function userAPI(req, res) {
     if (req.method === "POST") {
       let resu;
       if (action === "Rejected") {
-        resu = await jobModel.updateOne(
+        resu = await jobModel.findOneAndUpdate(
           { _id: req.body.id },
           { status: action, message: req.body.message },
           { new: true }
         );
       } else {
-        resu = await jobModel.updateOne(
+        resu = await jobModel.findOneAndUpdate(
           { _id: req.body.id },
           { status: action, message: "" },
           { new: true }

@@ -13,7 +13,15 @@ import { closeMessage, openMessage } from "../functions/message";
 import { MyContext } from "../context";
 import RejectMessage from "./rejectMessage";
 
-function JobDescription({ show, setShow, data, loading, setJobs, jobs }) {
+function JobDescription({
+  show,
+  setShow,
+  data,
+  loading,
+  setJobs,
+  jobs,
+  component = null,
+}) {
   const { messageApi } = useContext(MyContext);
   const [disabled, setDisabled] = useState(false);
   const [reason, setReason] = useState(null);
@@ -61,6 +69,7 @@ function JobDescription({ show, setShow, data, loading, setJobs, jobs }) {
     if (data && data._id && reason.trim().length !== 0) {
       setDisabled(true);
       const id = data._id;
+
       const { data: res } = await axios.post("/api/action/Rejected", {
         id: id,
         message: reason,
@@ -70,7 +79,12 @@ function JobDescription({ show, setShow, data, loading, setJobs, jobs }) {
       setRejectModalShow(false);
       if (res.status === 200) {
         closeMessage(messageApi, "Rejected Sucessfully", "success");
-        setJobs(jobs.filter((job) => job._id !== data._id));
+        if (component && component === "allJobs") {
+          const updatedData = jobs.map((job) =>
+            job._id === data._id ? res.data : job
+          );
+          setJobs(updatedData);
+        } else setJobs(jobs.filter((job) => job._id !== data._id));
         close();
         // await axios.post("https://backup-mohdshees.vercel.app/job-activated", {
         //   token: "axzis925klg029",
@@ -81,7 +95,6 @@ function JobDescription({ show, setShow, data, loading, setJobs, jobs }) {
       } else closeMessage(messageApi, res.err, "error");
     }
   }
-
   function close() {
     // router.replace(url, undefined, { shallow: true });
     setShow(false);
