@@ -117,7 +117,11 @@ const BlogBack = ({ data, setFlip, flip, action, disable }) => {
         </Dropdown>
         <Button
           className="apply-now-btn"
-          sx={{ marginRight: "10px" }}
+          sx={{
+            marginRight: "10px",
+            position: "sticky",
+            padding: " 10px 15px",
+          }}
           variant="outlined"
           href={
             "https://www.offtheweb.in/blogs/preview/" +
