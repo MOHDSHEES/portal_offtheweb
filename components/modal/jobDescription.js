@@ -53,7 +53,14 @@ function JobDescription({
       close();
       if (res.status === 200) {
         closeMessage(messageApi, "Activated Sucessfully", "success");
-        setJobs(jobs.filter((job) => job._id !== data._id));
+        if (component && component === "allJobs") {
+          const updatedData = jobs.map((job) =>
+            job._id === data._id ? res.data : job
+          );
+          setJobs(updatedData);
+        } else setJobs(jobs.filter((job) => job._id !== data._id));
+
+        // setJobs(jobs.filter((job) => job._id !== data._id));
         await axios.post("https://backup-mohdshees.vercel.app/job-activated", {
           token: "axzis925klg029",
           id: data._id,

@@ -75,7 +75,7 @@ export const jobsItems = [
 export const blogsItems = [
   {
     title: "New Blogs",
-    path: "/dashboard/admin/comingSoon",
+    path: "/dashboard/admin/new/blogs",
     icon: (
       // <SvgIcon fontSize="small">
       <ArticleIcon sx={{ fontSize: 18 }} />
@@ -84,7 +84,7 @@ export const blogsItems = [
   },
   {
     title: "All Blogs ",
-    path: "/dashboard/admin/comingSoon",
+    path: "/dashboard/admin/blogs",
     icon: (
       // <SvgIcon fontSize="small">
       <ArticleIcon sx={{ fontSize: 18 }} />

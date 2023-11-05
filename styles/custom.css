@@ -784,3 +784,13 @@ select:disabled {
 .ant-message {
   z-index: 8888;
 }
+
+.allblogs-flex-item {
+  padding: 5px;
+  min-width: 25%;
+  margin-right: 10px;
+}
+.allblogs-flex-item-last {
+  text-align: right;
+  margin: 10px;
+}
