@@ -41,7 +41,7 @@ const Jobs = () => {
               <Typography variant="h4">New Jobs</Typography>
             </div>
 
-            <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+            <Container maxWidth="xl" sx={{ mt: 4, mb: 4, padding: 0 }}>
               {loading ? (
                 <Stack spacing={1}>
                   <Skeleton variant="rectangular" height={140} />

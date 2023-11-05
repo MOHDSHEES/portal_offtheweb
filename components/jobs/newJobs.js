@@ -11,7 +11,7 @@ const NewJobs = ({ data }) => {
       //   key={idx}
       // onClick={() => jobDescription(data)}
       class="card categories-card  job-cards"
-      style={{ padding: 0, margin: "10px" }}
+      style={{ padding: 0, margin: "10px 0" }}
     >
       <div class="card-body">
         <small
