@@ -93,7 +93,7 @@ export const Tasks = () => {
   return (
     <Card sx={{ p: 2 }}>
       <CardHeader
-        title="Today's Tasks:"
+        title={<small>Today's Tasks:</small>}
         action={
           <Button
             color="inherit"

@@ -4,10 +4,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { MyContext } from "@/components/context";
+import { useContext } from "react";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function index() {
   const router = useRouter();
-  const { data } = useSession();
+  // const { data } = useSession();
+  const { loading, user } = useContext(MyContext);
   return (
     <>
       <Container maxWidth="lg">
@@ -20,7 +24,11 @@ export default function index() {
             <span style={{ color: "red" }}>WEB</span> Portal
           </Typography>
 
-          {data && data.user ? (
+          {loading ? (
+            <LoadingButton loading variant="outlined">
+              Login
+            </LoadingButton>
+          ) : user ? (
             <Button
               sx={{ mt: 2 }}
               onClick={() => router.push("/dashboard")}

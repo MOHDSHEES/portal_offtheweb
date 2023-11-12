@@ -72,7 +72,7 @@ const NewBlogs = ({
           );
           setBlogs(updatedData);
           filterFunction(data.status);
-        } else setBlogs(blogs.filter((blog) => blog._id !== data.id));
+        } else setBlogs(blogs.filter((blog) => blog.id !== data.id));
         close();
       } else closeMessage(messageApi, res.err, "error");
     }
