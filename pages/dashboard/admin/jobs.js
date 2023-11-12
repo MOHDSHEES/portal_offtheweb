@@ -19,7 +19,6 @@ import { ThreeDots } from "react-loader-spinner";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import { useRouter } from "next/router";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -219,6 +218,8 @@ const Jobs = () => {
         jobs={jobs}
         setJobs={setJobs}
         component="allJobs"
+        filterFunction={filterFunction}
+        filter={filter}
         // loading={loading}
       />
     </div>

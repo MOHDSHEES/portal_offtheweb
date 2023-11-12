@@ -107,11 +107,11 @@ export const AccountProfile = () => {
         </Box>
       </CardContent>
       <Divider />
-      {/* <CardActions>
-      <Button fullWidth variant="text">
-        Upload picture
-      </Button>
-    </CardActions> */}
+      <CardActions>
+        {/* <Button fullWidth variant="text">
+          Upload picture
+        </Button> */}
+      </CardActions>
     </Card>
   );
 };

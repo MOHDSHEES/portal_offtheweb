@@ -6,7 +6,7 @@ import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import ArticleIcon from "@mui/icons-material/Article";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-// import PostAddIcon from "@mui/icons-material/PostAdd";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 export const items = [
   {
@@ -16,6 +16,16 @@ export const items = [
     icon: (
       // <SvgIcon fontSize="small">
       <Person2Icon sx={{ fontSize: 18 }} />
+      // </SvgIcon>
+    ),
+  },
+  {
+    title: "Tasks",
+    path: "/dashboard/tasks",
+    adminLevel: 10,
+    icon: (
+      // <SvgIcon fontSize="small">
+      <AssignmentIcon sx={{ fontSize: 18 }} />
       // </SvgIcon>
     ),
   },
@@ -32,7 +42,7 @@ export const items = [
   },
   {
     title: "Add Employee/Intern",
-    path: "/dashboard/admin/comingSoon",
+    path: "/dashboard/admin/register/employee",
     adminLevel: 1,
     icon: (
       // <SvgIcon fontSize="small">

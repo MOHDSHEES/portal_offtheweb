@@ -19,11 +19,16 @@ const MyProvider = ({ children }) => {
     });
     if (da) setUser(da);
   }
+
   const { data } = useSession();
   useEffect(() => {
     if (data && data.user && !user) {
       getUser();
     }
+  }, [data, user]);
+
+  useEffect(() => {
+    if (!user && data) setUser(data.user);
   }, [data, user]);
   // console.log(user);
   return (

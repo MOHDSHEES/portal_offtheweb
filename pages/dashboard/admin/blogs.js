@@ -7,6 +7,7 @@ import {
   Typography,
   Tooltip,
   IconButton,
+  Chip,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -39,8 +40,8 @@ const Blogs = () => {
     if (flag && user && user.adminLevel === 1) getBlogs();
   }, [user]);
 
-  const [show, setShow] = useState(false);
-  const [data, setData] = useState(null);
+  // const [show, setShow] = useState(false);
+  // const [data, setData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMoreData, setIsMoreData] = useState(true);
   const itemsPerPage = 15;
@@ -140,10 +141,22 @@ const Blogs = () => {
                     Inactive
                   </MenuItem>
                   <MenuItem onClick={() => filterFunction("all")}>
-                    All Jobs
+                    All Blogs
                   </MenuItem>
                 </Menu>
               </Typography>
+              <Stack direction="row" spacing={1} sx={{ margin: "10px" }}>
+                {/* <Chip label="Deletable" onDelete={() => "df"} /> */}
+                {filter === "all" ? (
+                  <Chip label="All Blogs" variant="outlined" />
+                ) : (
+                  <Chip
+                    label={filter}
+                    variant="outlined"
+                    onDelete={() => filterFunction("all")}
+                  />
+                )}
+              </Stack>
             </div>
 
             <Container maxWidth="xl" sx={{ mt: 4, mb: 4, padding: 0 }}>
@@ -162,6 +175,7 @@ const Blogs = () => {
                             <NewBlogs
                               setBlogs={setBlogs}
                               blogs={blogs}
+                              filterFunction={filterFunction}
                               data={blog}
                               component="allBlogs"
                             />

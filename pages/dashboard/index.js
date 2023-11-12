@@ -9,21 +9,31 @@ import {
 } from "@mui/material";
 import DashboardLayout from "@/components/dashboardLayout";
 import { useSession } from "next-auth/react";
+import { Tasks } from "@/components/dashboard/account/tasks";
+import axios from "axios";
+import TaskStatsComponent from "@/components/dashboard/account/taskStats/taskStatsComponent";
 
 export default function Dashboard() {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  // async function test() {
+  //   const { data } = await axios.post("/api/google");
+  //   console.log(data);
+  // }
   //   console.log(session);
   return (
     <>
       <DashboardLayout>
         <Container maxWidth="xl">
           <Stack spacing={3}>
-            <div>
+            {/* <div>
               <Typography variant="h4">Account</Typography>
-            </div>
+              <button onClick={test} className="btn btn-primary">
+                test
+              </button>
+            </div> */}
 
             <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-              <div>
+              <div style={{ marginBottom: "20px" }}>
                 <Grid container spacing={3}>
                   <Grid xs={12} md={6} lg={4}>
                     <AccountProfile />
@@ -33,6 +43,10 @@ export default function Dashboard() {
                   </Grid>
                 </Grid>
               </div>
+              {/* <TaskStatsComponent /> */}
+              {/* <div>
+                <Tasks />
+              </div> */}
             </Container>
           </Stack>
         </Container>

@@ -6,12 +6,20 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { closeMessage, openMessage } from "../functions/message";
 import { MyContext } from "../context";
+import RejectMessage from "../modal/rejectMessage";
 
-const NewBlogs = ({ data, setBlogs, blogs, component = null }) => {
-  const { messageApi } = useContext(MyContext);
+const NewBlogs = ({
+  data,
+  setBlogs,
+  blogs,
+  component = null,
+  filterFunction,
+}) => {
+  const { messageApi, user } = useContext(MyContext);
   const [flip, setFlip] = useState(false);
   const [disable, setDisable] = useState(false);
-  const { data: session } = useSession();
+  const [show, setShow] = useState(false);
+
   async function action(status) {
     setDisable(true);
     openMessage(messageApi, "Processing please wait...");
@@ -19,7 +27,7 @@ const NewBlogs = ({ data, setBlogs, blogs, component = null }) => {
       id: [data.id],
       status: status,
       blog: data,
-      adminName: session && session.user.name,
+      adminName: user && user.name,
     });
     setDisable(false);
     if (res && res.status === 200) {
@@ -30,6 +38,7 @@ const NewBlogs = ({ data, setBlogs, blogs, component = null }) => {
           blog.id === data.id ? res.data : blog
         );
         setBlogs(updatedData);
+        filterFunction(data.status);
       } else setBlogs(blogs.filter((bl) => bl.id !== data.id));
 
       // setBlogs(blogs.filter((bl) => bl.id !== data.id));
@@ -37,6 +46,43 @@ const NewBlogs = ({ data, setBlogs, blogs, component = null }) => {
       closeMessage(messageApi, data.msg, "error");
     }
   }
+
+  const [reason, setReason] = useState(null);
+
+  async function reject(e) {
+    e.preventDefault();
+    if (data && data._id && reason.trim().length !== 0) {
+      setDisable(true);
+      const id = data.id;
+
+      const { data: res } = await axios.post("/api/blogs/actionReject", {
+        id: id,
+        message: reason,
+        blog: data,
+        adminName: user && user.name,
+      });
+      // setOpen(false);
+      setDisable(false);
+      setShow(false);
+      if (res.status === 200) {
+        closeMessage(messageApi, "Rejected Sucessfully", "success");
+        if (component && component === "allBlogs") {
+          const updatedData = blogs.map((blog) =>
+            blog.id === data.id ? res.data : blog
+          );
+          setBlogs(updatedData);
+          filterFunction(data.status);
+        } else setBlogs(blogs.filter((blog) => blog._id !== data.id));
+        close();
+      } else closeMessage(messageApi, res.err, "error");
+    }
+  }
+  function close() {
+    setReason("");
+    // router.replace(url, undefined, { shallow: true });
+    setShow(false);
+  }
+
   return (
     <div>
       <ReactCardFlip isFlipped={flip} flipDirection="vertical">
@@ -45,14 +91,23 @@ const NewBlogs = ({ data, setBlogs, blogs, component = null }) => {
         </div>
         <div>
           <BlogBack
+            setShow={setShow}
             setFlip={setFlip}
             disable={disable}
+            setDisable={setDisable}
             action={action}
             flip={flip}
             data={data}
           />
         </div>
       </ReactCardFlip>
+      <RejectMessage
+        reason={reason}
+        reject={reject}
+        setReason={setReason}
+        show={show}
+        onHide={() => setShow(false)}
+      />
     </div>
   );
 };

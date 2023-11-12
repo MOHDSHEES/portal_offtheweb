@@ -8,9 +8,11 @@ export default async function userAPI(req, res) {
     await dbConnect();
 
     const bl = req.body.blog;
+    delete bl.activationDetails;
     const blog = {
       ...bl,
       status: req.body.status,
+      message: "",
       "activationDetails.activatedBy": req.body.adminName,
       "activationDetails.activatedDate": new Date(),
     };
@@ -75,7 +77,7 @@ export default async function userAPI(req, res) {
       res.json({ status: 500, msg: "something went wrong" });
     }
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     res.send({ msg: error.message });
   }
 }

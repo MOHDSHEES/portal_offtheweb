@@ -1,7 +1,11 @@
 import { Button } from "@mui/material";
 import Dropdown from "react-bootstrap/Dropdown";
+import RejectMessage from "../modal/rejectMessage";
+import { closeMessage } from "../functions/message";
+import { MyContext } from "../context";
+import { useContext } from "react";
 
-const BlogBack = ({ data, setFlip, flip, action, disable }) => {
+const BlogBack = ({ data, setFlip, flip, action, disable, setShow }) => {
   let activationRequest = false;
   let date = null;
   if (
@@ -76,16 +80,22 @@ const BlogBack = ({ data, setFlip, flip, action, disable }) => {
           </small>
 
           <small className="allblogs-flex-item">
-            <span style={{ fontWeight: 500 }}>Activated By:</span>{" "}
-            {data.status === "Active"
+            <span style={{ fontWeight: 500 }}>
+              {data.status === "Active" ? "Activated By:" : "Rejected By:"}
+            </span>{" "}
+            {data.status !== "Inactive"
               ? data.activationDetails
                 ? data.activationDetails.activatedBy
                 : "No data Available"
               : "Not Activated"}
           </small>
           <small className="allblogs-flex-item">
-            <span style={{ fontWeight: 500 }}>Activation Date:</span>{" "}
-            {data.status === "Active"
+            <span style={{ fontWeight: 500 }}>
+              {data.status === "Active"
+                ? "Activation Date:"
+                : "Rejection Date:"}
+            </span>{" "}
+            {data.status !== "Inactive"
               ? data.activationDetails
                 ? data.activationDetails.activatedDate.slice(4, 24)
                 : "No data Available"
@@ -106,10 +116,16 @@ const BlogBack = ({ data, setFlip, flip, action, disable }) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => action("Active")}>
-              Activate
-            </Dropdown.Item>
-            <Dropdown.Item>Reject</Dropdown.Item>
+            {data && data.status !== "Active" && (
+              <Dropdown.Item onClick={() => action("Active")}>
+                Activate
+              </Dropdown.Item>
+            )}
+            {data && data.status !== "Rejected" && (
+              <Dropdown.Item onClick={() => setShow(true)}>
+                Reject
+              </Dropdown.Item>
+            )}
             {/* <Dropdown.Item href="#/action-3">
                       Something else
                     </Dropdown.Item> */}

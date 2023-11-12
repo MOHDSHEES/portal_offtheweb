@@ -21,6 +21,8 @@ function JobDescription({
   setJobs,
   jobs,
   component = null,
+  filterFunction,
+  filter,
 }) {
   const { messageApi } = useContext(MyContext);
   const [disabled, setDisabled] = useState(false);
@@ -58,6 +60,7 @@ function JobDescription({
             job._id === data._id ? res.data : job
           );
           setJobs(updatedData);
+          filterFunction(filter);
         } else setJobs(jobs.filter((job) => job._id !== data._id));
 
         // setJobs(jobs.filter((job) => job._id !== data._id));
@@ -249,10 +252,14 @@ function JobDescription({
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={activate}>Activate</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setRejectModalShow(true)}>
-                      Reject
-                    </Dropdown.Item>
+                    {data && data.status !== "Active" && (
+                      <Dropdown.Item onClick={activate}>Activate</Dropdown.Item>
+                    )}
+                    {data && data.status !== "Rejected" && (
+                      <Dropdown.Item onClick={() => setRejectModalShow(true)}>
+                        Reject
+                      </Dropdown.Item>
+                    )}
                     {/* <Dropdown.Item href="#/action-3">
                       Something else
                     </Dropdown.Item> */}

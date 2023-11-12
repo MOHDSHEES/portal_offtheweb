@@ -29,6 +29,7 @@ const blogSchema = new mongoose.Schema({
     activatedBy: { type: String },
     activatedDate: { type: String },
   },
+  message: { type: String },
 });
 
 // productsSchema.index({ name: "text", category: "text" });

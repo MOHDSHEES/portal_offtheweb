@@ -1,4 +1,4 @@
-import Login from "@/components/register.js/login";
+import Login from "@/components/register/login";
 import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";

@@ -12,7 +12,7 @@ export default function RejectMessage(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Resaon</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Reason</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={props.reject}>
