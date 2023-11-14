@@ -10,7 +10,7 @@ const MyContext = createContext();
 const MyProvider = ({ children }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   // const [isAuth, setIsAuth] = useState(false);
   // const [data, setData] = useState(null);
   async function getUser() {

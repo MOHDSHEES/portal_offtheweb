@@ -19,18 +19,17 @@ export default function Dashboard() {
   //   const { data } = await axios.post("/api/google");
   //   console.log(data);
   // }
-  //   console.log(session);
   return (
     <>
       <DashboardLayout>
         <Container maxWidth="xl">
           <Stack spacing={3}>
-            {/* <div>
+            <div>
               <Typography variant="h4">Account</Typography>
-              <button onClick={test} className="btn btn-primary">
+              {/* <button onClick={test} className="btn btn-primary">
                 test
-              </button>
-            </div> */}
+              </button> */}
+            </div>
 
             <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
               <div style={{ marginBottom: "20px" }}>

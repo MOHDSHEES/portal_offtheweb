@@ -58,7 +58,7 @@ async function fetchDataFromSearchConsole(req, res) {
     const webmasters = google.webmasters({ version: "v3", auth });
 
     const response = await webmasters.searchanalytics.query({
-      siteUrl: "https://www.offtheweb.in/",
+      siteUrl: "https://www.offtheweb.in",
       requestBody: {
         startDate: "2023-01-01",
         endDate: "2023-02-01",
