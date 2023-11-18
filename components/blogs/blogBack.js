@@ -105,7 +105,26 @@ const BlogBack = ({ data, setFlip, flip, action, disable, setShow }) => {
       </div>
 
       <div className="allblogs-flex-item-last">
-        <Dropdown className="action-btn" drop="up">
+        <Button
+          className="apply-now-btn"
+          sx={{
+            marginLeft: "10px",
+            position: "sticky",
+            padding: " 10px 15px",
+          }}
+          variant="outlined"
+          href={
+            "https://www.offtheweb.in/blogs/preview/" +
+            data.title.toLowerCase().replace(/ /g, "-").replace(/\?/g, "") +
+            "-" +
+            data.id
+          }
+          rel="noreferrer"
+          target="_blank"
+        >
+          preview
+        </Button>
+        <Dropdown className="action-btn" drop="up-centered">
           <Dropdown.Toggle
             className="apply-now-btn"
             variant="success"
@@ -131,25 +150,7 @@ const BlogBack = ({ data, setFlip, flip, action, disable, setShow }) => {
                     </Dropdown.Item> */}
           </Dropdown.Menu>
         </Dropdown>
-        <Button
-          className="apply-now-btn"
-          sx={{
-            marginRight: "10px",
-            position: "sticky",
-            padding: " 10px 15px",
-          }}
-          variant="outlined"
-          href={
-            "https://www.offtheweb.in/blogs/preview/" +
-            data.title.toLowerCase().replace(/ /g, "-").replace(/\?/g, "") +
-            "-" +
-            data.id
-          }
-          rel="noreferrer"
-          target="_blank"
-        >
-          preview
-        </Button>
+
         {/* <a
           href={
             "https://www.offtheweb.in/blogs/preview/" +
