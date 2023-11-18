@@ -14,7 +14,15 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 export const TopUserComparisonsCard = (props) => {
-  const { title, data, positive = false, color, sx, number = false } = props;
+  const {
+    title,
+    data,
+    positive = false,
+    color = "primary.main",
+    icon = true,
+    sx,
+    number = false,
+  } = props;
 
   return (
     <Card sx={sx}>
@@ -33,17 +41,19 @@ export const TopUserComparisonsCard = (props) => {
               {number ? data.value : `${(data.value * 100).toFixed(1)}%`}
             </Typography>
           </Stack>
-          <Avatar
-            sx={{
-              backgroundColor: color,
-              height: 45,
-              width: 45,
-            }}
-          >
-            <SvgIcon>
-              <TrendingUpIcon />
-            </SvgIcon>
-          </Avatar>
+          {icon && (
+            <Avatar
+              sx={{
+                backgroundColor: color,
+                height: 45,
+                width: 45,
+              }}
+            >
+              <SvgIcon>
+                <TrendingUpIcon />
+              </SvgIcon>
+            </Avatar>
+          )}
         </Stack>
         {data.difference && (
           <Stack alignItems="center" direction="row" spacing={2} sx={{ mt: 2 }}>

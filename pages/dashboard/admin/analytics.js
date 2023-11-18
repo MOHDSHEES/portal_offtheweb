@@ -14,6 +14,7 @@ import axios from "axios";
 import GeoChart from "@/components/siteAnalytics/geoChart";
 import UserComparisonMonthly from "@/components/siteAnalytics/userComparisonMonthly";
 import TopUsersComparisonComponent from "@/components/siteAnalytics/topUsersComparisonComponent";
+import BottomComponent from "@/components/siteAnalytics/bottomComponent";
 
 const Analytics = () => {
   const [mapData, setMapData] = useState(null);
@@ -44,7 +45,7 @@ const Analytics = () => {
   }
   async function getData() {
     const { data } = await axios.post("/api/google");
-    // console.log(data);
+    console.log(data);
     setData(data);
     filterMapData(data.all.rows);
     filterUserComparisonData(data.months.rows);
@@ -113,6 +114,7 @@ const Analytics = () => {
               </Grid>
             </Grid>
           </Box>
+          <BottomComponent data={data} />
         </Container>
       </Container>
     </DashboardLayout>

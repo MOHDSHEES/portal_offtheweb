@@ -75,12 +75,20 @@ async function fetchDataFromSearchConsole(req, res) {
       metricAggregations: ["TOTAL"],
     });
 
+    const [operatingSystem] = await analyticsDataClient.runReport({
+      property: `properties/${propertyId}`,
+      dimensions: [{ name: "operatingSystem" }],
+      metrics: [{ name: "totalUsers" }],
+      dateRanges: [{ startDate: "360daysAgo", endDate: "yesterday" }],
+      metricAggregations: ["TOTAL"],
+    });
+
     // console.log("Report result:");
     //   console.log(JSON.stringify(response.rows));
     //   response.rows.forEach((row) => {
     //     console.log(row.dimensionValues[0], row.metricValues[0]);
     //   });
-    res.send({ all: response, months: resp });
+    res.send({ all: response, months: resp, operatingSystem: operatingSystem });
 
     // runReport();
     // const SCOPES = ["https://www.googleapis.com/auth/webmasters.readonly"];
