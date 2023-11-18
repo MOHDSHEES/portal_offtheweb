@@ -7,7 +7,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 export const items = [
   {
@@ -57,7 +57,7 @@ export const items = [
     adminLevel: 1,
     icon: (
       // <SvgIcon fontSize="small">
-      <AnalyticsIcon sx={{ fontSize: 18 }} />
+      <BarChartIcon sx={{ fontSize: 18 }} />
       // </SvgIcon>
     ),
   },
