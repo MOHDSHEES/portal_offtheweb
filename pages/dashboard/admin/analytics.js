@@ -45,7 +45,7 @@ const Analytics = () => {
   }
   async function getData() {
     const { data } = await axios.post("/api/google");
-    console.log(data);
+    // console.log(data);
     setData(data);
     filterMapData(data.all.rows);
     filterUserComparisonData(data.months.rows);
@@ -70,7 +70,7 @@ const Analytics = () => {
             component="main"
             sx={{
               flexGrow: 1,
-              py: 5,
+              py: 3,
             }}
           >
             <Grid container spacing={3}>

@@ -63,7 +63,7 @@ const BottomComponent = ({ data }) => {
       component="main"
       sx={{
         flexGrow: 1,
-        py: 5,
+        py: 3,
       }}
     >
       <Grid container spacing={3}>
