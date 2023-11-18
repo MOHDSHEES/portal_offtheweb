@@ -55,7 +55,7 @@ const BottomComponent = ({ data }) => {
     setScreenPageViews({ value: da[4].value });
     setSessions({ value: da[7].value });
     setUserEngagementDuration({
-      value: (da[9].value / 6000).toFixed(1) + "sec",
+      value: (da[9].value / 6000).toFixed(1) + "s",
     });
   }
   return (
