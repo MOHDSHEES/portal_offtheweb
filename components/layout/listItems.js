@@ -7,6 +7,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
 
 export const items = [
   {
@@ -47,6 +48,16 @@ export const items = [
     icon: (
       // <SvgIcon fontSize="small">
       <PersonAddIcon sx={{ fontSize: 18 }} />
+      // </SvgIcon>
+    ),
+  },
+  {
+    title: "Site Analytics",
+    path: "/dashboard/admin/analytics",
+    adminLevel: 1,
+    icon: (
+      // <SvgIcon fontSize="small">
+      <AnalyticsIcon sx={{ fontSize: 18 }} />
       // </SvgIcon>
     ),
   },
