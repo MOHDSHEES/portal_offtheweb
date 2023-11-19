@@ -116,108 +116,110 @@ export default function SideBar(props) {
         </Stack>
       </Box>
 
-      {user && user.adminLevel && user.adminLevel === 1 && (
-        <>
-          <Divider sx={{ borderColor: "black" }} />
-          <Box
-            component="nav"
-            sx={{
-              flexGrow: 1,
-              px: 2,
-              py: 1,
-              paddingBottom: 3,
-            }}
-          >
-            <Stack
-              component="ul"
-              spacing={0.5}
+      {(user && user.adminLevel && user.adminLevel === 1) ||
+        (user.employeeId === "1885816702" && (
+          <>
+            <Divider sx={{ borderColor: "black" }} />
+            <Box
+              component="nav"
               sx={{
-                listStyle: "none",
-                p: 0,
-                m: 0,
+                flexGrow: 1,
+                px: 2,
+                py: 1,
+                paddingBottom: 3,
               }}
             >
-              <Box sx={{ paddingLeft: 2 }}>
-                <Box
-                  sx={{
-                    display: "inline-flex",
-                    height: 32,
-                    width: 32,
-                  }}
-                >
-                  Blogs
+              <Stack
+                component="ul"
+                spacing={0.5}
+                sx={{
+                  listStyle: "none",
+                  p: 0,
+                  m: 0,
+                }}
+              >
+                <Box sx={{ paddingLeft: 2 }}>
+                  <Box
+                    sx={{
+                      display: "inline-flex",
+                      height: 32,
+                      width: 32,
+                    }}
+                  >
+                    Blogs
+                  </Box>
                 </Box>
-              </Box>
-              {blogsItems.map((item) => {
-                const active = item.path ? pathname === item.path : false;
+                {blogsItems.map((item) => {
+                  const active = item.path ? pathname === item.path : false;
 
-                return (
-                  <SideNavItem
-                    active={active}
-                    disabled={item.disabled}
-                    external={item.external}
-                    icon={item.icon}
-                    key={item.title}
-                    path={item.path}
-                    title={item.title}
-                  />
-                );
-              })}
-            </Stack>
-          </Box>
-        </>
-      )}
-      {user && user.adminLevel && user.adminLevel === 1 && (
-        <>
-          <Divider sx={{ borderColor: "black" }} />
-          <Box
-            component="nav"
-            sx={{
-              flexGrow: 1,
-              px: 2,
-              py: 1,
-              paddingBottom: 3,
-            }}
-          >
-            <Stack
-              component="ul"
-              spacing={0.5}
+                  return (
+                    <SideNavItem
+                      active={active}
+                      disabled={item.disabled}
+                      external={item.external}
+                      icon={item.icon}
+                      key={item.title}
+                      path={item.path}
+                      title={item.title}
+                    />
+                  );
+                })}
+              </Stack>
+            </Box>
+          </>
+        ))}
+      {(user && user.adminLevel && user.adminLevel === 1) ||
+        (user.employeeId === "1885816702" && (
+          <>
+            <Divider sx={{ borderColor: "black" }} />
+            <Box
+              component="nav"
               sx={{
-                listStyle: "none",
-                p: 0,
-                m: 0,
+                flexGrow: 1,
+                px: 2,
+                py: 1,
+                paddingBottom: 3,
               }}
             >
-              <Box sx={{ paddingLeft: 2 }}>
-                <Box
-                  sx={{
-                    display: "inline-flex",
-                    height: 32,
-                    width: 32,
-                  }}
-                >
-                  Jobs
+              <Stack
+                component="ul"
+                spacing={0.5}
+                sx={{
+                  listStyle: "none",
+                  p: 0,
+                  m: 0,
+                }}
+              >
+                <Box sx={{ paddingLeft: 2 }}>
+                  <Box
+                    sx={{
+                      display: "inline-flex",
+                      height: 32,
+                      width: 32,
+                    }}
+                  >
+                    Jobs
+                  </Box>
                 </Box>
-              </Box>
-              {jobsItems.map((item) => {
-                const active = item.path ? pathname === item.path : false;
+                {jobsItems.map((item) => {
+                  const active = item.path ? pathname === item.path : false;
 
-                return (
-                  <SideNavItem
-                    active={active}
-                    disabled={item.disabled}
-                    external={item.external}
-                    icon={item.icon}
-                    key={item.title}
-                    path={item.path}
-                    title={item.title}
-                  />
-                );
-              })}
-            </Stack>
-          </Box>
-        </>
-      )}
+                  return (
+                    <SideNavItem
+                      active={active}
+                      disabled={item.disabled}
+                      external={item.external}
+                      icon={item.icon}
+                      key={item.title}
+                      path={item.path}
+                      title={item.title}
+                    />
+                  );
+                })}
+              </Stack>
+            </Box>
+          </>
+        ))}
       <Divider sx={{ borderColor: "black" }} />
       <Box
         sx={{
