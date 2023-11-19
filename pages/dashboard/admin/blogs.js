@@ -37,7 +37,12 @@ const Blogs = () => {
 
   let flag = 1;
   useEffect(() => {
-    if (flag && user && user.adminLevel === 1) getBlogs();
+    if (
+      flag &&
+      user &&
+      (user.adminLevel === 1 || user.employeeId !== "1885816702")
+    )
+      getBlogs();
   }, [user]);
 
   // const [show, setShow] = useState(false);

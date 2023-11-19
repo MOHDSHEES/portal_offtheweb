@@ -169,59 +169,57 @@ export default function SideBar(props) {
             </Box>
           </>
         )}
-      {user &&
-        user.adminLevel &&
-        (user.adminLevel === 1 || user.employeeId === "1885816702") && (
-          <>
-            <Divider sx={{ borderColor: "black" }} />
-            <Box
-              component="nav"
+      {user && user.adminLevel && user.adminLevel === 1 && (
+        <>
+          <Divider sx={{ borderColor: "black" }} />
+          <Box
+            component="nav"
+            sx={{
+              flexGrow: 1,
+              px: 2,
+              py: 1,
+              paddingBottom: 3,
+            }}
+          >
+            <Stack
+              component="ul"
+              spacing={0.5}
               sx={{
-                flexGrow: 1,
-                px: 2,
-                py: 1,
-                paddingBottom: 3,
+                listStyle: "none",
+                p: 0,
+                m: 0,
               }}
             >
-              <Stack
-                component="ul"
-                spacing={0.5}
-                sx={{
-                  listStyle: "none",
-                  p: 0,
-                  m: 0,
-                }}
-              >
-                <Box sx={{ paddingLeft: 2 }}>
-                  <Box
-                    sx={{
-                      display: "inline-flex",
-                      height: 32,
-                      width: 32,
-                    }}
-                  >
-                    Jobs
-                  </Box>
+              <Box sx={{ paddingLeft: 2 }}>
+                <Box
+                  sx={{
+                    display: "inline-flex",
+                    height: 32,
+                    width: 32,
+                  }}
+                >
+                  Jobs
                 </Box>
-                {jobsItems.map((item) => {
-                  const active = item.path ? pathname === item.path : false;
+              </Box>
+              {jobsItems.map((item) => {
+                const active = item.path ? pathname === item.path : false;
 
-                  return (
-                    <SideNavItem
-                      active={active}
-                      disabled={item.disabled}
-                      external={item.external}
-                      icon={item.icon}
-                      key={item.title}
-                      path={item.path}
-                      title={item.title}
-                    />
-                  );
-                })}
-              </Stack>
-            </Box>
-          </>
-        )}
+                return (
+                  <SideNavItem
+                    active={active}
+                    disabled={item.disabled}
+                    external={item.external}
+                    icon={item.icon}
+                    key={item.title}
+                    path={item.path}
+                    title={item.title}
+                  />
+                );
+              })}
+            </Stack>
+          </Box>
+        </>
+      )}
       <Divider sx={{ borderColor: "black" }} />
       <Box
         sx={{

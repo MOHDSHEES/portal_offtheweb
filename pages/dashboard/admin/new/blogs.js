@@ -30,7 +30,12 @@ const Blogs = () => {
 
   let flag = 1;
   useEffect(() => {
-    if (flag && user && user.adminLevel === 1) getNewBlogs();
+    if (
+      flag &&
+      user &&
+      (user.adminLevel === 1 || user.employeeId === "1885816702")
+    )
+      getNewBlogs();
   }, [user]);
 
   return (

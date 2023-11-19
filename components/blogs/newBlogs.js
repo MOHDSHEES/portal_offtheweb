@@ -21,29 +21,37 @@ const NewBlogs = ({
   const [show, setShow] = useState(false);
 
   async function action(status) {
-    setDisable(true);
-    openMessage(messageApi, "Processing please wait...");
-    const { data: res } = await axios.post("/api/blogs/action", {
-      id: [data.id],
-      status: status,
-      blog: data,
-      adminName: user && user.name,
-    });
-    setDisable(false);
-    if (res && res.status === 200) {
-      closeMessage(messageApi, res.msg, "success");
+    if (user && user.employeeId !== "1885816702") {
+      setDisable(true);
+      openMessage(messageApi, "Processing please wait...");
+      const { data: res } = await axios.post("/api/blogs/action", {
+        id: [data.id],
+        status: status,
+        blog: data,
+        adminName: user && user.name,
+      });
+      setDisable(false);
+      if (res && res.status === 200) {
+        closeMessage(messageApi, res.msg, "success");
 
-      if (component && component === "allBlogs") {
-        const updatedData = blogs.map((blog) =>
-          blog.id === data.id ? res.data : blog
-        );
-        setBlogs(updatedData);
-        filterFunction(data.status);
-      } else setBlogs(blogs.filter((bl) => bl.id !== data.id));
+        if (component && component === "allBlogs") {
+          const updatedData = blogs.map((blog) =>
+            blog.id === data.id ? res.data : blog
+          );
+          setBlogs(updatedData);
+          filterFunction(data.status);
+        } else setBlogs(blogs.filter((bl) => bl.id !== data.id));
 
-      // setBlogs(blogs.filter((bl) => bl.id !== data.id));
+        // setBlogs(blogs.filter((bl) => bl.id !== data.id));
+      } else {
+        closeMessage(messageApi, data.msg, "error");
+      }
     } else {
-      closeMessage(messageApi, data.msg, "error");
+      closeMessage(
+        messageApi,
+        "Demo account does not support this feature",
+        "info"
+      );
     }
   }
 
@@ -51,30 +59,38 @@ const NewBlogs = ({
 
   async function reject(e) {
     e.preventDefault();
-    if (data && data._id && reason.trim().length !== 0) {
-      setDisable(true);
-      const id = data.id;
+    if (user && user.employeeId !== "1885816702") {
+      if (data && data._id && reason.trim().length !== 0) {
+        setDisable(true);
+        const id = data.id;
 
-      const { data: res } = await axios.post("/api/blogs/actionReject", {
-        id: id,
-        message: reason,
-        blog: data,
-        adminName: user && user.name,
-      });
-      // setOpen(false);
-      setDisable(false);
-      setShow(false);
-      if (res.status === 200) {
-        closeMessage(messageApi, "Rejected Sucessfully", "success");
-        if (component && component === "allBlogs") {
-          const updatedData = blogs.map((blog) =>
-            blog.id === data.id ? res.data : blog
-          );
-          setBlogs(updatedData);
-          filterFunction(data.status);
-        } else setBlogs(blogs.filter((blog) => blog.id !== data.id));
-        close();
-      } else closeMessage(messageApi, res.err, "error");
+        const { data: res } = await axios.post("/api/blogs/actionReject", {
+          id: id,
+          message: reason,
+          blog: data,
+          adminName: user && user.name,
+        });
+        // setOpen(false);
+        setDisable(false);
+        setShow(false);
+        if (res.status === 200) {
+          closeMessage(messageApi, "Rejected Sucessfully", "success");
+          if (component && component === "allBlogs") {
+            const updatedData = blogs.map((blog) =>
+              blog.id === data.id ? res.data : blog
+            );
+            setBlogs(updatedData);
+            filterFunction(data.status);
+          } else setBlogs(blogs.filter((blog) => blog.id !== data.id));
+          close();
+        } else closeMessage(messageApi, res.err, "error");
+      }
+    } else {
+      closeMessage(
+        messageApi,
+        "Demo account does not support this feature",
+        "info"
+      );
     }
   }
   function close() {
