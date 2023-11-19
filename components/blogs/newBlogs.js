@@ -91,6 +91,7 @@ const NewBlogs = ({
         "Demo account does not support this feature",
         "info"
       );
+      close();
     }
   }
   function close() {

@@ -40,7 +40,7 @@ const Blogs = () => {
     if (
       flag &&
       user &&
-      (user.adminLevel === 1 || user.employeeId !== "1885816702")
+      (user.adminLevel === 1 || user.employeeId === "1885816702")
     )
       getBlogs();
   }, [user]);
