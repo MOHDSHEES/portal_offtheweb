@@ -17,7 +17,8 @@ import { closeMessage, openMessage } from "../functions/message";
 import axios from "axios";
 
 export const AddEmployee = () => {
-  const { messageApi } = useContext(MyContext);
+  const { messageApi, user } = useContext(MyContext);
+  console.log(user);
   const [validated, setValidated] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [state, setstate] = useState({
@@ -62,26 +63,27 @@ export const AddEmployee = () => {
       event.stopPropagation();
       setValidated(true);
     } else {
-      setDisabled(true);
-      openMessage(messageApi, "Sending...");
-      const { data } = await axios.post("/api/employeeRegisterEmail", {
-        state: state,
-      });
-      //   console.log(data);
-      //   console.log(state);
-      if (data.success) {
-        closeMessage(messageApi, data.message, "success");
-        setValidated(false);
-        clear();
-      } else {
-        closeMessage(messageApi, data.message, "error");
-        setValidated(true);
-        // setisValid(false);
+      if (user && user.employeeId !== "1885816702") {
+        setDisabled(true);
+        openMessage(messageApi, "Sending...");
+        const { data } = await axios.post("/api/employeeRegisterEmail", {
+          state: state,
+        });
+        //   console.log(data);
+        //   console.log(state);
+        if (data.success) {
+          closeMessage(messageApi, data.message, "success");
+          setValidated(false);
+          clear();
+        } else {
+          closeMessage(messageApi, data.message, "error");
+          setValidated(true);
+          // setisValid(false);
+        }
+        // console.log(data);
+        setDisabled(false);
       }
-      // console.log(data);
-      setDisabled(false);
     }
-
     // const { data } = await axios.post("/api/find/user", {
     //   email: state.email,
     //   password: state.password,
