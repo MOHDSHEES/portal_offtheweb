@@ -13,11 +13,9 @@ const Employee = () => {
               <Typography variant="h4">Register Employee/Intern</Typography>
             </div>
 
-            <Container
-              maxWidth="xl"
-              sx={{ mt: 4, mb: 4, padding: 0 }}
-            ></Container>
-            <AddEmployee />
+            <Container maxWidth="xl" sx={{ mt: 4, mb: 4, padding: 0 }}>
+              <AddEmployee />
+            </Container>
           </Stack>
         </Container>
       </DashboardLayout>
