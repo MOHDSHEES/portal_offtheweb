@@ -59,7 +59,7 @@ const TaskStatsComponent = () => {
               </Typography>
             </div>
             <Grid container spacing={3}>
-              {WeekDates &&
+              {WeekDates ? (
                 user.tasks.map((task, idx) => {
                   return (
                     WeekDates.includes(task.assignDate) && (
@@ -75,7 +75,15 @@ const TaskStatsComponent = () => {
                       </Grid>
                     )
                   );
-                })}
+                })
+              ) : (
+                <div style={{ margin: "15px 5px" }}>
+                  <Typography variant="caption">
+                    There are currently no tasks assigned to you. All your
+                    upcoming task's score will be showcased here.
+                  </Typography>
+                </div>
+              )}
             </Grid>
           </Card>
         </Grid>

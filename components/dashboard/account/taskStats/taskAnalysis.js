@@ -128,7 +128,11 @@ export const TaskAnalysis = (props) => {
 
                 {user && (
                   <>
-                    {user.score.preWeek >= 7 ? (
+                    {user.score.preWeek < 0 ? (
+                      <Typography sx={{ color: "green" }} variant="h4">
+                        NA
+                      </Typography>
+                    ) : user.score.preWeek >= 7 ? (
                       <Typography sx={{ color: "green" }} variant="h4">
                         Good
                       </Typography>
@@ -157,7 +161,7 @@ export const TaskAnalysis = (props) => {
                     size={60}
                     sx={{
                       color: `${
-                        user.score.preWeek >= 7
+                        user.score.preWeek >= 7 || user.score.preWeek < 0
                           ? "green"
                           : user.score.preWeek > 4
                           ? "#eed202"
@@ -165,7 +169,11 @@ export const TaskAnalysis = (props) => {
                       }`,
                     }}
                     variant="determinate"
-                    value={user && user.score.preWeek * 10}
+                    value={
+                      user && user.score.preWeek < 0
+                        ? 100
+                        : user.score.preWeek * 10
+                    }
                   />
                 )}
                 <Box
@@ -185,7 +193,8 @@ export const TaskAnalysis = (props) => {
                     component="div"
                     color="text.secondary"
                   >
-                    {user && user.score.preWeek}
+                    {user &&
+                      (user.score.preWeek < 0 ? "NA" : user.score.preWeek)}
                   </Typography>
                 </Box>
               </Box>
@@ -195,7 +204,7 @@ export const TaskAnalysis = (props) => {
       </Grid>
       {user && (
         <Typography variant="body2" sx={{ margin: "10px" }}>
-          {user.score.preWeek >= 7
+          {user.score.preWeek >= 7 || user.score.preWeek < 0
             ? "Congratulations! Your performance has been exceptional. Keep up the great work!"
             : user.score.preWeek > 4
             ? "Your performance has been noted, and there is room for improvement. Let's work together to enhance your skills and achieve even better results."
