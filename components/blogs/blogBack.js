@@ -105,25 +105,47 @@ const BlogBack = ({ data, setFlip, flip, action, disable, setShow }) => {
       </div>
 
       <div className="allblogs-flex-item-last">
-        <Button
-          className="apply-now-btn"
-          sx={{
-            marginLeft: "10px",
-            position: "sticky",
-            padding: " 10px 15px",
-          }}
-          variant="outlined"
-          href={
-            "https://www.offtheweb.in/blogs/preview/" +
-            data.title.toLowerCase().replace(/ /g, "-").replace(/\?/g, "") +
-            "-" +
-            data.id
-          }
-          rel="noreferrer"
-          target="_blank"
-        >
-          preview
-        </Button>
+        {data && data.status === "Active" ? (
+          <Button
+            className="apply-now-btn"
+            sx={{
+              marginLeft: "10px",
+              position: "sticky",
+              padding: " 10px 15px",
+            }}
+            variant="outlined"
+            href={
+              "https://www.offtheweb.in/blogs/" +
+              data.title.toLowerCase().replace(/ /g, "-").replace(/\?/g, "") +
+              "-" +
+              data.id
+            }
+            rel="noreferrer"
+            target="_blank"
+          >
+            view
+          </Button>
+        ) : (
+          <Button
+            className="apply-now-btn"
+            sx={{
+              marginLeft: "10px",
+              position: "sticky",
+              padding: " 10px 15px",
+            }}
+            variant="outlined"
+            href={
+              "https://www.offtheweb.in/blogs/preview/" +
+              data.title.toLowerCase().replace(/ /g, "-").replace(/\?/g, "") +
+              "-" +
+              data.id
+            }
+            rel="noreferrer"
+            target="_blank"
+          >
+            preview
+          </Button>
+        )}
         <Dropdown className="action-btn" drop="up-centered">
           <Dropdown.Toggle
             className="apply-now-btn"
