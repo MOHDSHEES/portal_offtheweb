@@ -10,7 +10,7 @@ export default async function userAPI(req, res) {
 
     const data = req.body.state;
     const token = getEmployeeToken(data);
-    console.log(token);
+    // console.log(token);
     // console.log(data);
     // contact us email
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -30,14 +30,14 @@ export default async function userAPI(req, res) {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.status(500).send({
           success: false,
           message: "Something went wrong. Try again later",
         });
       });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.json({ success: false, message: error });
   }
 }
