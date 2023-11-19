@@ -18,7 +18,6 @@ import axios from "axios";
 
 export const AddEmployee = () => {
   const { messageApi, user } = useContext(MyContext);
-  console.log(user);
   const [validated, setValidated] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [state, setstate] = useState({
@@ -82,6 +81,12 @@ export const AddEmployee = () => {
         }
         // console.log(data);
         setDisabled(false);
+      } else {
+        closeMessage(
+          messageApi,
+          "Demo Account does not support adding employees.",
+          "info"
+        );
       }
     }
     // const { data } = await axios.post("/api/find/user", {
