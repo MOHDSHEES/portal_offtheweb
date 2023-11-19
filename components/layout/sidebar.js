@@ -116,8 +116,9 @@ export default function SideBar(props) {
         </Stack>
       </Box>
 
-      {(user && user.adminLevel && user.adminLevel === 1) ||
-        (user.employeeId === "1885816702" && (
+      {user &&
+        user.adminLevel &&
+        (user.adminLevel === 1 || user.employeeId === "1885816702") && (
           <>
             <Divider sx={{ borderColor: "black" }} />
             <Box
@@ -167,9 +168,10 @@ export default function SideBar(props) {
               </Stack>
             </Box>
           </>
-        ))}
-      {(user && user.adminLevel && user.adminLevel === 1) ||
-        (user.employeeId === "1885816702" && (
+        )}
+      {user &&
+        user.adminLevel &&
+        (user.adminLevel === 1 || user.employeeId === "1885816702") && (
           <>
             <Divider sx={{ borderColor: "black" }} />
             <Box
@@ -219,7 +221,7 @@ export default function SideBar(props) {
               </Stack>
             </Box>
           </>
-        ))}
+        )}
       <Divider sx={{ borderColor: "black" }} />
       <Box
         sx={{
