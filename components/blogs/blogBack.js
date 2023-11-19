@@ -81,7 +81,7 @@ const BlogBack = ({ data, setFlip, flip, action, disable, setShow }) => {
 
           <small className="allblogs-flex-item">
             <span style={{ fontWeight: 500 }}>
-              {data.status === "Active" ? "Activated By:" : "Rejected By:"}
+              {data.status === "Rejected" ? "Rejected By:" : "Activated By:"}
             </span>{" "}
             {data.status !== "Inactive"
               ? data.activationDetails
@@ -91,9 +91,9 @@ const BlogBack = ({ data, setFlip, flip, action, disable, setShow }) => {
           </small>
           <small className="allblogs-flex-item">
             <span style={{ fontWeight: 500 }}>
-              {data.status === "Active"
-                ? "Activation Date:"
-                : "Rejection Date:"}
+              {data.status === "Rejected"
+                ? "Rejection Date:"
+                : "Activation Date:"}
             </span>{" "}
             {data.status !== "Inactive"
               ? data.activationDetails
