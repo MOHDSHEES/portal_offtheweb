@@ -209,7 +209,6 @@ const EmployeeOldTasks = (props) => {
                                       <p
                                         key={idx}
                                         style={{
-                                          lineBreak: "anywhere",
                                           marginBottom: 0,
                                         }}
                                       >
