@@ -164,9 +164,12 @@ const EmployeeCard = ({
           {user.employeeId === "1885816702" ||
             (adminLevel === 1 &&
               employee.status === 1 &&
-              !["6222563006", "9870357609", "9197487964"].includes(
-                employee.employeeId
-              ) && (
+              ![
+                "6222563006",
+                "9870357609",
+                "9197487964",
+                "1885816702",
+              ].includes(employee.employeeId) && (
                 <div className="employee-status-edit">
                   <div class="btn-group dropstart">
                     <button
