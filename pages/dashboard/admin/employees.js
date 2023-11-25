@@ -11,7 +11,7 @@ const Employees = () => {
   const { user, messageApi } = useContext(MyContext);
   const [employees, setEmployees] = useState(null);
   const [filteredEmployees, setFilteredEmployees] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [adminLevel, setAdminLevel] = useState(10);
   const [radio, setRadio] = useState("1");
   // console.log(employees);
@@ -19,7 +19,7 @@ const Employees = () => {
     setRadio(radio);
     const emp = data ? data : employees;
     if (radio === "2") {
-      // setLoading(true);
+      setLoading(true);
       const d = emp.filter((emp) => emp.post === "Digital Marketing & SEO");
 
       setLoading(false);
@@ -56,11 +56,12 @@ const Employees = () => {
           setEmployees(data.data);
           setFilteredEmployees(data.data);
           setAdminLevel(user.adminLevel && user.adminLevel);
+          setLoading(false);
         } else {
           openMessage(messageApi, data.msg);
+          setLoading(false);
         }
       })();
-      setLoading(false);
     }
   }, [employees, user]);
   return (
