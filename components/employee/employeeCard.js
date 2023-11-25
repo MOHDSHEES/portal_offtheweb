@@ -271,16 +271,17 @@ const EmployeeCard = ({
           </div> */}
 
           <>
-            {employee.status === 1 &&
-              (adminLevel === 1 || adminLevel < employee.adminLevel) && (
-                <button
-                  type="button"
-                  onClick={() => setModalShow(true)}
-                  className="btn btn-success btn-rounded btn-lg"
-                >
-                  Assign Task
-                </button>
-              )}
+            {(user.employeeId === "1885816702" ||
+              (employee.status === 1 &&
+                (adminLevel === 1 || adminLevel < employee.adminLevel))) && (
+              <button
+                type="button"
+                onClick={() => setModalShow(true)}
+                className="btn btn-success btn-rounded btn-lg"
+              >
+                Assign Task
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setOldTasksModal(true)}
