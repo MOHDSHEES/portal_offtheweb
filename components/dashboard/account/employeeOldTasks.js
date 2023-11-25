@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import parse from "html-react-parser";
 import FormatDate from "@/components/functions/formatDate";
 import capital from "@/components/functions/capitaliseStr";
 import { Alert, Button } from "@mui/material";
+import TaskAssign from "@/components/employee/taskAssign";
+import { MyContext } from "@/components/context";
 // import TaskAssign from "../admin/taskAssign";
 
 const EmployeeOldTasks = (props) => {
   const [modalShow, setModalShow] = useState(false);
+  const { user, messageApi } = useContext(MyContext);
   const [radio, setRadio] = useState("1");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(
@@ -48,14 +51,22 @@ const EmployeeOldTasks = (props) => {
 
   const [oldTask, setOldTask] = useState(null);
   async function editTask(task) {
-    if (
-      props.isAdmin &&
-      props.data.status &&
-      props.adminLevel &&
-      (props.adminLevel === 1 || props.adminLevel < props.data.adminLevel)
-    ) {
-      setOldTask(task);
-      setModalShow(true);
+    if (user.employeeId === "1885816702") {
+      closeMessage(
+        messageApi,
+        "Demo account does not support this feature",
+        "info"
+      );
+    } else {
+      if (
+        props.isAdmin &&
+        props.data.status &&
+        props.adminLevel &&
+        (props.adminLevel === 1 || props.adminLevel < props.data.adminLevel)
+      ) {
+        setOldTask(task);
+        setModalShow(true);
+      }
     }
   }
   return (
@@ -263,7 +274,7 @@ const EmployeeOldTasks = (props) => {
         </Modal.Body>
       </Modal>
 
-      {/* <TaskAssign
+      <TaskAssign
         employees={props.employees}
         oldTask={oldTask}
         employee={props.data}
@@ -273,7 +284,7 @@ const EmployeeOldTasks = (props) => {
         setEmployees={props.setEmployees}
         show={modalShow}
         onHide={() => setModalShow(false)}
-      /> */}
+      />
     </div>
   );
 };

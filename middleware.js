@@ -26,7 +26,18 @@ export default async function middleware(req, event) {
     callbacks: {
       authorized: async () => {
         if (req.nextUrl.pathname.startsWith("/dashboard/admin")) {
-          if (
+          if (req.nextUrl.pathname.startsWith("/dashboard/admin/employees")) {
+            if (
+              token &&
+              token.user &&
+              (token.user.adminLevel <= 3 ||
+                token.user.employeeId === "1885816702")
+            ) {
+              return true;
+            } else {
+              return false;
+            }
+          } else if (
             token &&
             token.user &&
             (token.user.adminLevel === 1 ||

@@ -34,7 +34,7 @@ export const items = [
   {
     title: "Assign Task",
     adminLevel: 1,
-    path: "/dashboard/admin/comingSoon",
+    path: "/dashboard/admin/employees",
     icon: (
       // <SvgIcon fontSize="small">
       <AddTaskIcon sx={{ fontSize: 18 }} />

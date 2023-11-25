@@ -794,3 +794,24 @@ select:disabled {
   text-align: right;
   margin: 10px;
 }
+
+.btn-simple {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+.employee-status-edit {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.tasks {
+  cursor: pointer;
+}
+.tasks:hover {
+  background-color: #fcdedf;
+}

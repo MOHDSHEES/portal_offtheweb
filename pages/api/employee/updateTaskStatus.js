@@ -47,7 +47,7 @@ export default async function userAPI(req, res) {
     // let trending = resu.map((a) => a.title);
     // console.log(resu);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.json({ status: 500, msg: error });
   }
 }
