@@ -47,6 +47,7 @@ const Employees = () => {
 
   useEffect(() => {
     if (user && !employees) {
+      setLoading(true);
       (async () => {
         const { data } = await axios.post("/api/employee/getAllEmployees", {
           adminLevel: user.adminLevel,
@@ -59,6 +60,7 @@ const Employees = () => {
           openMessage(messageApi, data.msg);
         }
       })();
+      setLoading(false);
     }
   }, [employees, user]);
   return (

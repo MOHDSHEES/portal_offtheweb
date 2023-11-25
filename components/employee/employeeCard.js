@@ -161,57 +161,52 @@ const EmployeeCard = ({
             />
           </div>
 
-          {user.employeeId === "1885816702" ||
-            (adminLevel === 1 &&
-              employee.status === 1 &&
-              ![
-                "6222563006",
-                "9870357609",
-                "9197487964",
-                "1885816702",
-              ].includes(employee.employeeId) && (
-                <div className="employee-status-edit">
-                  <div class="btn-group dropstart">
-                    <button
-                      class=" btn-simple"
-                      style={{ padding: "5px 10px" }}
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      &#8942;
-                    </button>
-                    <ul
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
+          {(user.employeeId === "1885816702" || adminLevel === 1) &&
+            employee.status === 1 &&
+            !["6222563006", "9870357609", "9197487964", "1885816702"].includes(
+              employee.employeeId
+            ) && (
+              <div className="employee-status-edit">
+                <div class="btn-group dropstart">
+                  <button
+                    class=" btn-simple"
+                    style={{ padding: "5px 10px" }}
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    &#8942;
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li>
+                      <a
+                        onClick={() => updateDetails({ status: 0 })}
+                        class="dropdown-item"
+                        href="#!"
+                      >
+                        Terminate
+                      </a>
+                    </li>
+                    {employee.certificate && !employee.certificate.released && (
                       <li>
                         <a
-                          onClick={() => updateDetails({ status: 0 })}
+                          // onClick={() => releaseCertificate(true)}
+                          onClick={() => setManagerShow(true)}
                           class="dropdown-item"
                           href="#!"
                         >
-                          Terminate
+                          Release Certificate
                         </a>
                       </li>
-                      {employee.certificate &&
-                        !employee.certificate.released && (
-                          <li>
-                            <a
-                              // onClick={() => releaseCertificate(true)}
-                              onClick={() => setManagerShow(true)}
-                              class="dropdown-item"
-                              href="#!"
-                            >
-                              Release Certificate
-                            </a>
-                          </li>
-                        )}
-                    </ul>
-                  </div>
+                    )}
+                  </ul>
                 </div>
-              ))}
+              </div>
+            )}
           <h4 className="mb-2">{employee.name}</h4>
           <p className="text-muted mb-4">
             {employee.post}
