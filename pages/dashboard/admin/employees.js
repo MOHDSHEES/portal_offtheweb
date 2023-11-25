@@ -44,7 +44,7 @@ const Employees = () => {
       setFilteredEmployees(emp);
     }
   }
-
+  console.log(filteredEmployees);
   useEffect(() => {
     if (user && !employees) {
       setLoading(true);
