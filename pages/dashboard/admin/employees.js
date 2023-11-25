@@ -151,7 +151,7 @@ const Employees = () => {
             <div className="row d-flex justify-content-center align-items-center ">
               {loading ? (
                 "Loading..."
-              ) : filteredEmployees && filteredEmployees.length != 0 ? (
+              ) : filteredEmployees && filteredEmployees.length !== 0 ? (
                 filteredEmployees.map((employee) => {
                   return radio === "5" ? (
                     <EmployeeCard
