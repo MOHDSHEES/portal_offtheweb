@@ -152,7 +152,10 @@ const EmployeeOldTasks = (props) => {
                           <div>
                             <li
                               onClick={() => editTask(task)}
-                              style={{ backgroundColor: "#fbf8f8" }}
+                              style={{
+                                backgroundColor: "#fbf8f8",
+                                overflow: "auto",
+                              }}
                               className={`${
                                 props.isAdmin && "tasks"
                               } list-group-item justify-content-between align-items-center p-3`}
