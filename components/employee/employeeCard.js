@@ -218,7 +218,7 @@ const EmployeeCard = ({
             <br />
             Emp. Id: {employee.employeeId}
             <br />
-            {employee.email}
+            {user.employeeId !== "1885816702" && employee.email}
             <br />
             {employee.score &&
               employee.score.weekly &&
