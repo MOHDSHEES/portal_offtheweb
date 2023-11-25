@@ -20,13 +20,17 @@ const Employees = () => {
     const emp = data ? data : employees;
     if (radio === "2") {
       setLoading(true);
-      const d = emp.filter((emp) => emp.post === "Digital Marketing & SEO");
+      const d = emp.filter((emp) => {
+        return emp.status === 1 && emp.post === "Digital Marketing & SEO";
+      });
 
       setLoading(false);
       setFilteredEmployees(d);
     } else if (radio === "3") {
       setLoading(true);
-      const d = emp.filter((emp) => emp.post === "Content Writer");
+      const d = emp.filter((emp) => {
+        return emp.status === 1 && emp.post === "Content Writer";
+      });
       setLoading(false);
       setFilteredEmployees(d);
     } else if (radio === "4") {
