@@ -80,7 +80,7 @@ const BottomComponent = ({ data, loading, dateRange }) => {
                 {dateRange && dateRange.startDate && (
                   <Typography variant="caption" sx={{ margin: "10px" }}>
                     <b>Note:</b> The analytics provided are from{" "}
-                    {dateRange.startDate} period leading up to the{" "}
+                    {dateRange.startDate} leading up to the{" "}
                     {dateRange.endDate ? dateRange.endDate : "Yesterday"}.
                   </Typography>
                 )}
@@ -160,7 +160,7 @@ const BottomComponent = ({ data, loading, dateRange }) => {
               {dateRange && dateRange.startDate ? (
                 <Typography variant="caption" sx={{ margin: "10px" }}>
                   <b>Note:</b> The analytics provided are from{" "}
-                  {dateRange.startDate} period leading up to the{" "}
+                  {dateRange.startDate} leading up to the{" "}
                   {dateRange.endDate ? dateRange.endDate : "Yesterday"}.
                 </Typography>
               ) : (
