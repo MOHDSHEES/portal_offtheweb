@@ -3,6 +3,8 @@ import { GoogleAuth } from "google-auth-library";
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 async function fetchDataFromSearchConsole(req, res) {
+  const startDate = req.body.startDate ? req.body.startDate : "360daysAgo";
+  const endDate = req.body.endDate ? req.body.endDate : "yesterday";
   //   const SCOPES = ["https://www.googleapis.com/auth/webmasters.readonly"];
   //   const auth = new google.auth.GoogleAuth({
   //     keyFile: process.cwd() + "/credentials.json",
@@ -52,7 +54,7 @@ async function fetchDataFromSearchConsole(req, res) {
         { name: "totalUsers" },
         { name: "userEngagementDuration" },
       ],
-      dateRanges: [{ startDate: "360daysAgo", endDate: "yesterday" }],
+      dateRanges: [{ startDate: startDate, endDate: endDate }],
       metricAggregations: ["TOTAL"],
     });
 
@@ -79,7 +81,7 @@ async function fetchDataFromSearchConsole(req, res) {
       property: `properties/${propertyId}`,
       dimensions: [{ name: "operatingSystem" }],
       metrics: [{ name: "totalUsers" }],
-      dateRanges: [{ startDate: "360daysAgo", endDate: "yesterday" }],
+      dateRanges: [{ startDate: startDate, endDate: endDate }],
       metricAggregations: ["TOTAL"],
     });
 
@@ -114,7 +116,7 @@ async function fetchDataFromSearchConsole(req, res) {
     // // console.log("Search Console API response:", response.data);
     // return response.data;
   } catch (error) {
-    console.error("Error fetching data from Search Console API:", error);
+    // console.error("Error fetching data from Search Console API:", error);
     res.send(error);
     // throw error;
   }

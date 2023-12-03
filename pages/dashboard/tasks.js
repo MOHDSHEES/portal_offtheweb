@@ -1,6 +1,6 @@
 import * as React from "react";
-import { AccountProfile } from "@/components/dashboard/account/accountProfile";
-import { AccountProfileDetails } from "@/components/dashboard/account/profileDetails";
+// import { AccountProfile } from "@/components/dashboard/account/accountProfile";
+// import { AccountProfileDetails } from "@/components/dashboard/account/profileDetails";
 import {
   Container,
   Stack,

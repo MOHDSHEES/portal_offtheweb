@@ -8,6 +8,7 @@ import {
   Card,
   CardHeader,
   Skeleton,
+  Button,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -15,12 +16,18 @@ import GeoChart from "@/components/siteAnalytics/geoChart";
 import UserComparisonMonthly from "@/components/siteAnalytics/userComparisonMonthly";
 import TopUsersComparisonComponent from "@/components/siteAnalytics/topUsersComparisonComponent";
 import BottomComponent from "@/components/siteAnalytics/bottomComponent";
+import CustomAnalytics from "@/components/modal/customAnalytics";
 
 const Analytics = () => {
   const [mapData, setMapData] = useState(null);
   const [data, setData] = useState(null);
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userComparisonData, setUserComparisonData] = useState(null);
-
+  const [dateRange, setDateRange] = useState({
+    startDate: null,
+    endDate: "",
+  });
   function filterMapData(data) {
     const updatedResultArray = data.map((entry) => [
       entry.dimensionValues[0].value,
@@ -44,11 +51,17 @@ const Analytics = () => {
     ]);
   }
   async function getData() {
-    const { data } = await axios.post("/api/google");
+    setLoading(true);
+    const { data } = await axios.post("/api/google", {
+      startDate: dateRange.startDate,
+      endDate: dateRange.endDate,
+    });
     // console.log(data);
+
     setData(data);
     filterMapData(data.all.rows);
     filterUserComparisonData(data.months.rows);
+    setLoading(false);
   }
   let flag = 1;
   useEffect(() => {
@@ -62,7 +75,14 @@ const Analytics = () => {
     <DashboardLayout>
       <Container maxWidth="xl">
         <Stack spacing={3}>
-          <Typography variant="h4">Site Analytics</Typography>
+          <CardHeader
+            title={<Typography variant="h4">Site Analytics</Typography>}
+            action={
+              <Button variant="contained" onClick={() => setShow(true)}>
+                Filter
+              </Button>
+            }
+          />
         </Stack>
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, padding: 0 }}>
           <TopUsersComparisonComponent data={data && data.months} />
@@ -81,7 +101,7 @@ const Analytics = () => {
                       <small style={{ fontSize: "18px" }}>Total Users:</small>
                     }
                   />
-                  {mapData ? (
+                  {mapData && !loading ? (
                     <Grid container spacing={3} sx={{ padding: "10px" }}>
                       <GeoChart mapData={mapData} />
                     </Grid>
@@ -114,9 +134,20 @@ const Analytics = () => {
               </Grid>
             </Grid>
           </Box>
-          <BottomComponent data={data} />
+          <BottomComponent
+            dateRange={dateRange}
+            data={data}
+            loading={loading}
+          />
         </Container>
       </Container>
+      <CustomAnalytics
+        show={show}
+        setShow={setShow}
+        dateRange={dateRange}
+        setDateRange={setDateRange}
+        getData={getData}
+      />
     </DashboardLayout>
   );
 };

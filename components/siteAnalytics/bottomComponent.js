@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import OperatingSystemPieChart from "./operatingSystemPieChart";
 
-const BottomComponent = ({ data }) => {
+const BottomComponent = ({ data, loading, dateRange }) => {
   const [activeUsers, setActiveUsers] = useState({
     value: null,
   });
@@ -74,9 +74,16 @@ const BottomComponent = ({ data }) => {
                 <small style={{ fontSize: "18px" }}>Traffic Source:</small>
               }
             />
-            {operatingSystem ? (
+            {operatingSystem && !loading ? (
               <Grid container spacing={3} sx={{ padding: "10px" }}>
                 <OperatingSystemPieChart data={operatingSystem} />
+                {dateRange && dateRange.startDate && (
+                  <Typography variant="caption" sx={{ margin: "10px" }}>
+                    <b>Note:</b> The analytics provided are from{" "}
+                    {dateRange.startDate} period leading up to the{" "}
+                    {dateRange.endDate ? dateRange.endDate : "Yesterday"}.
+                  </Typography>
+                )}
               </Grid>
             ) : (
               <Skeleton variant="rounded" height={250} />
@@ -88,14 +95,14 @@ const BottomComponent = ({ data }) => {
             <CardHeader
               title={
                 <small style={{ fontSize: "18px" }}>
-                  Yearly Users Analytics:
+                  {!dateRange.startDate && "Yearly "} Users Analytics:
                 </small>
               }
             />
 
             <Grid container spacing={3}>
               <Grid xs={6} sm={6} lg={6}>
-                {activeUsers.value ? (
+                {activeUsers.value && !loading ? (
                   <TopUserComparisonsCard
                     title="Active Users"
                     data={activeUsers}
@@ -109,7 +116,7 @@ const BottomComponent = ({ data }) => {
                 )}
               </Grid>
               <Grid xs={6} sm={6} lg={6}>
-                {screenPageViews.value ? (
+                {screenPageViews.value && !loading ? (
                   <TopUserComparisonsCard
                     title="Total Views"
                     data={screenPageViews}
@@ -123,7 +130,7 @@ const BottomComponent = ({ data }) => {
                 )}
               </Grid>
               <Grid xs={6} sm={6} lg={6}>
-                {sessions.value ? (
+                {sessions.value && !loading ? (
                   <TopUserComparisonsCard
                     title="Total User Sessions"
                     data={sessions}
@@ -137,7 +144,7 @@ const BottomComponent = ({ data }) => {
                 )}
               </Grid>
               <Grid xs={6} sm={6} lg={6}>
-                {userEngagementDuration.value ? (
+                {userEngagementDuration.value && !loading ? (
                   <TopUserComparisonsCard
                     title="Average Engagment duration"
                     data={userEngagementDuration}
@@ -150,11 +157,18 @@ const BottomComponent = ({ data }) => {
                   <Skeleton variant="rounded" height={130} />
                 )}
               </Grid>
-
-              <Typography variant="caption" sx={{ margin: "10px" }}>
-                <b>Note:</b> The analytics provided are for the twelve-month
-                period leading up to the previous month.
-              </Typography>
+              {dateRange && dateRange.startDate ? (
+                <Typography variant="caption" sx={{ margin: "10px" }}>
+                  <b>Note:</b> The analytics provided are from{" "}
+                  {dateRange.startDate} period leading up to the{" "}
+                  {dateRange.endDate ? dateRange.endDate : "Yesterday"}.
+                </Typography>
+              ) : (
+                <Typography variant="caption" sx={{ margin: "10px" }}>
+                  <b>Note:</b> The analytics provided are for the twelve-month
+                  period leading up to the previous month.
+                </Typography>
+              )}
             </Grid>
           </Card>
         </Grid>
