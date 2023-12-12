@@ -12,7 +12,7 @@
 
 import { withAuth } from "next-auth/middleware";
 import { getToken } from "next-auth/jwt";
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 
 export default async function middleware(req, event) {
   const token = await getToken({ req });
