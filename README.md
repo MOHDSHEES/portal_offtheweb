@@ -11,7 +11,7 @@
 <br/>
 2). Create the .env file in the root directory and create the following environment variables.
 <br/>
-&emsp; a). "MONGODB_URL" : Register on mongodb for database and provide the connection string as a value.
+&emsp;a). "MONGODB_URL" : Register on mongodb for database and provide the connection string as a value.
 <br/>
 &emsp;b). "SENDGRID_API_KEY" : Register on sendGrid and paste the connection string as a value.
 <br/>
@@ -19,8 +19,8 @@
 <br/>
 
 <h4>For analytics to work: </h4>
-i). Register on google analytics and register site on google search console.
+&emsp;i). Register on google analytics and register site on google search console.
 <br/>
-ii). Paste the "PROPERTYID", "CLIENT_EMAIL" and "PRIVATE_KEY" in .env.
+&emsp;ii). Paste the "PROPERTYID", "CLIENT_EMAIL" and "PRIVATE_KEY" in .env.
 <br/>
 3). Open the terminal and run 'npm run dev'.
