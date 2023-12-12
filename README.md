@@ -5,6 +5,7 @@
 <b>Description:</b> It is a portal for managing the blog website "<a href="https://offtheweb.in/">OFFTHEWEB</a>". where we need an I'd to login. It support to types of authentication as follows:
 <br/>
 &ensp;a). <b>Admin :</b> Admin can access anything on the portal including site analytics and blog activation and rejection.
+<br/>
 &ensp;b). <b>Employee:</b> Can see limited options such as dashboard and their tasks and blogs.
 
 <h4>How to run: </h4>
