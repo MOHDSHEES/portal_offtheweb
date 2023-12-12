@@ -4,7 +4,6 @@
 <br/>
 <b>Description:</b> It is a portal for managing the blog website "<a href="https://offtheweb.in/">OFFTHEWEB</a>".
 <br/>
-<br/>
 <h4>How to run: </h4>
 <br/>
 1). Download the repository from "<a href="https://github.com/MOHDSHEES/portal_offtheweb">https://github.com/MOHDSHEES/portal_offtheweb</a>.
@@ -17,10 +16,9 @@
    <br/>
    c). "NEXTAUTH_SECRET" : Create any string value.
    <br/>
-   <b>For analytics to work: </b>
+   <b>For analytics to work: </b><br/>
         i). Register on google analytics and register site on google search console.
         <br/>
        ii). Paste the "PROPERTYID", "CLIENT_EMAIL" and "PRIVATE_KEY" in .env.
        <br/>
-<br/>
 3). Open the terminal and run 'npm run dev'.
