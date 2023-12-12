@@ -27,3 +27,10 @@
 &emsp;ii). Paste the "PROPERTYID", "CLIENT_EMAIL" and "PRIVATE_KEY" in .env.
 <br/>
 3). Open the terminal and run 'npm run dev'.
+
+<br/>
+<h4>Login credentials for testing:</h4>
+<br/>
+<b>Email: </b>offtheweb@demo.com
+<br/>
+<b>Password: </b>offthewebdemo
