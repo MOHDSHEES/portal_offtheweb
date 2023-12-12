@@ -1,8 +1,8 @@
 <h4>Portal OffTheWeb</h4>
 
-<b>Preview:</b> <a href="https://portal.offtheweb.in/"> Portal OFFTHEWEB</a>
+<b>Preview:</b> <a href="https://portal.offtheweb.in/" target="_blank"  rel="noreferrer"> Portal OFFTHEWEB</a>
 <br/>
-<b>Description:</b> It is a portal for managing the blog website "<a href="https://offtheweb.in/">OFFTHEWEB</a>". where we need an I'd to login. It support to types of authentication as follows:
+<b>Description:</b> It is a portal for managing the blog website "<a href="https://offtheweb.in/" target="_blank"  rel="noreferrer">OFFTHEWEB</a>". where we need an I'd to login. It support to types of authentication as follows:
 <br/>
 &ensp;a). <b>Admin :</b> Admin can access anything on the portal including site analytics and blog activation and rejection.
 <br/>
@@ -10,7 +10,7 @@
 
 <h4>How to run: </h4>
 
-1). Download the repository from "<a href="https://github.com/MOHDSHEES/portal_offtheweb">https://github.com/MOHDSHEES/portal_offtheweb</a>.
+1). Download the repository from "<a href="https://github.com/MOHDSHEES/portal_offtheweb" target="_blank"  rel="noreferrer">https://github.com/MOHDSHEES/portal_offtheweb</a>.
 <br/>
 2). Create the .env file in the root directory and create the following environment variables.
 <br/>
