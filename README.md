@@ -11,11 +11,11 @@
 <br/>
 2). Create the .env file in the root directory and create the following environment variables.
 <br/>
-a). "MONGODB_URL" : Register on mongodb for database and provide the connection string as a value.
+&emsp; a). "MONGODB_URL" : Register on mongodb for database and provide the connection string as a value.
 <br/>
-b). "SENDGRID_API_KEY" : Register on sendGrid and paste the connection string as a value.
+&emsp;b). "SENDGRID_API_KEY" : Register on sendGrid and paste the connection string as a value.
 <br/>
-c). "NEXTAUTH_SECRET" : Create any string value.
+&emsp;c). "NEXTAUTH_SECRET" : Create any string value.
 <br/>
 
 <h4>For analytics to work: </h4>
