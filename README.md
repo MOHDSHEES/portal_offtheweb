@@ -26,7 +26,7 @@
 <br/>
 &emsp;ii). Paste the "PROPERTYID", "CLIENT_EMAIL" and "PRIVATE_KEY" in .env.
 <br/>
-3). Open the terminal and run 'npm run dev'.
+3). Open the terminal  cd to "portal_offtheweb-main" and run 'npm run dev'.
 
 <br/>
 <h4>Login credentials for testing:</h4>
