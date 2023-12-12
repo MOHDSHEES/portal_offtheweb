@@ -30,7 +30,6 @@
 
 <br/>
 <h4>Login credentials for testing:</h4>
-<br/>
 <b>Email: </b>offtheweb@demo.com
 <br/>
 <b>Password: </b>offthewebdemo
