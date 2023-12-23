@@ -34,7 +34,7 @@
 <b>Email: </b>offtheweb@demo.com
 <br/>
 <b>Password: </b>offthewebdemo
-<h3>Admin:</h3>
+<h3>Employee:</h3>
 <b>Email: </b>offthewebemployee@demo.com
 <br/>
 <b>Password: </b>demoEmployee
