@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
-import { message } from "antd";
 import { closeMessage, openMessage } from "../functions/message";
+import { MyContext } from "../context";
 
 const ForgetPassword = (props) => {
   const [email, setEmail] = useState("");
   function emailChange(e) {
     setEmail(e.target.value);
     setValidated(false);
-    setisValid(true);
+    // setisValid(true);
   }
-
-  const [messageApi, contextHolder] = message.useMessage();
+  const { messageApi } = useContext(MyContext);
   const [validated, setValidated] = useState(false);
-  const [isValid, setisValid] = useState(true);
-  const [error, setError] = useState(null);
+  //   const [isValid, setisValid] = useState(true);
+  //   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
   async function handleSubmit(event) {
@@ -28,34 +27,35 @@ const ForgetPassword = (props) => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      closeMessage(messageApi, "Enter valid email", "error");
+      setValidated(false);
     } else {
       openMessage(messageApi, "Sending...");
+      setValidated(true);
       setDisabled(true);
-      const { data } = await axios.post("/api/forgetpassword", {
+      const { data } = await axios.post("/api/password/forgetPasswordEmail", {
         email: email,
       });
       if (data.success) {
         closeMessage(messageApi, data.message, "success");
         props.onHide();
       } else {
-        closeMessage(messageApi, data.message, "success");
-        setError(data.message);
-        setisValid(false);
+        closeMessage(messageApi, data.message, "error");
+        // setError(data.message);
+        setValidated(false);
+        // setisValid(false);
       }
       setDisabled(false);
       // console.log(data);
     }
-
-    setValidated(true);
   }
   function clear() {
     setEmail("");
     setValidated(false);
-    setisValid(true);
+    // setisValid(true);
   }
   return (
     <div>
-      {contextHolder}
       <Modal
         onExit={() => {
           clear();
@@ -71,17 +71,17 @@ const ForgetPassword = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {!isValid && (
+          {/* {!isValid && (
             <div class="alert alert-danger" role="alert">
               {error}
             </div>
-          )}
+          )} */}
           <small id="emailHelp" class="form-text text-muted mb-3">
             To recover your Password Please enter the Email registered with your
             account.
           </small>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Label className="mt-2">Email</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -89,11 +89,11 @@ const ForgetPassword = (props) => {
               placeholder="Enter Email"
               required
             />
-            <Form.Control.Feedback type="invalid">
+            {/* <Form.Control.Feedback type="invalid">
               {error}
-            </Form.Control.Feedback>
+            </Form.Control.Feedback> */}
             <Modal.Footer>
-              <Button className="primary-1" disabled={disabled} type="submit">
+              <Button disabled={disabled} type="submit">
                 Send Email
               </Button>
               <Button variant="secondary" onClick={props.onHide}>

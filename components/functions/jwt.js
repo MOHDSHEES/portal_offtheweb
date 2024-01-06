@@ -9,11 +9,10 @@ const getPasswordToken = (email) => {
 // verify token for password reset link
 const verifyPasswordToken = (token) => {
   try {
-    // console.log(token);
     var decoded = jwt.verify(token, process.env.JWT_PASSWORD_SECRET, {
       algorithm: "RS256",
     });
-    // console.log(decoded);
+
     if (decoded.email) {
       // res.locals.email = decoded.email;
       // next();

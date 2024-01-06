@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import ForgetPassword from "./forgetPassword";
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 // import Link from "@mui/material/Link";
@@ -25,6 +24,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import BackdropComponent from "../UI-component/backdrop";
+import ForgetPassword from "../modal/forgetPassword";
 
 const Login = () => {
   const [validated, setValidated] = useState(false);
@@ -247,14 +247,12 @@ const Login = () => {
             </Box>
           </Container>
         </ThemeProvider>
-        <ForgetPassword
-        // show={modalShow} onHide={() => setModalShow(false)}
-        />
         {/* </Layout> */}
       </div>
       <div>
         <BackdropComponent open={open} />
       </div>
+      <ForgetPassword show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 };
