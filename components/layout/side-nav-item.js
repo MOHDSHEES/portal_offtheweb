@@ -4,7 +4,15 @@ import { Box, ButtonBase } from "@mui/material";
 import NextLink from "next/link";
 
 const SideNavItem = (props) => {
-  const { active = false, disabled, external, icon, path, title } = props;
+  const {
+    active = false,
+    disabled,
+    external,
+    icon,
+    path,
+    title,
+    onClick,
+  } = props;
   const linkProps = path
     ? external
       ? {
@@ -18,7 +26,7 @@ const SideNavItem = (props) => {
         }
     : {};
   return (
-    <li className={`${active && "sidebar-item-active"}`}>
+    <li onClick={onClick} className={`${active && "sidebar-item-active"}`}>
       <ButtonBase
         sx={{
           alignItems: "center",

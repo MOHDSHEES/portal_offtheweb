@@ -18,6 +18,13 @@ import { useContext, useState } from "react";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { MyContext } from "../context.js";
 
+import handleGeneratePdf from "../functions/certificate.js";
+import dynamic from "next/dynamic";
+const GenerateCertificate = dynamic(
+  () => import("../functions/certificate.js"),
+  { ssr: false }
+);
+
 export default function SideBar(props) {
   const { open, onClose } = props;
   const { user } = useContext(MyContext);
@@ -114,6 +121,9 @@ export default function SideBar(props) {
                 );
               } else return null;
             })}
+          {user && user.certificate && user.certificate.released && (
+            <GenerateCertificate />
+          )}
         </Stack>
       </Box>
 
