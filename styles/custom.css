@@ -815,3 +815,7 @@ select:disabled {
 .tasks:hover {
   background-color: #fcdedf;
 }
+
+.pointer:hover {
+  cursor: pointer;
+}
