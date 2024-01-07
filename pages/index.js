@@ -26,7 +26,7 @@ export default function index() {
 
           {loading ? (
             <LoadingButton loading variant="outlined">
-              Login
+              Verifying...
             </LoadingButton>
           ) : user ? (
             <Button
